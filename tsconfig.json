@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/client/*": ["packages/client/src/*"],
+      "@/api/*": ["packages/api/src/*"]
+    }
+  }
+}

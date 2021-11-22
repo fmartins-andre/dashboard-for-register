@@ -1,0 +1,31 @@
+{
+  "name": "dashboard-for-register",
+  "description": "Get data from Escriba Register database and show it in a web dashboard",
+  "version": "1.0.0",
+  "author": "André Martins <fmartins.andre@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "client:dev": "yarn --cwd packages/client dev",
+    "client:build": "yarn --cwd packages/client build",
+    "client:serve": "yarn --cwd packages/client serve",
+    "api:dev": "yarn --cwd packages/api dev",
+    "api:build": "yarn --cwd packages/api build",
+    "api:serve": "yarn --cwd packages/api serve",
+    "api:start": "yarn --cwd packages/api start"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "typescript": "^4.5.2"
+  }
+}
