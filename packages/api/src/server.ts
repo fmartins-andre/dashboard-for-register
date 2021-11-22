@@ -1,25 +1,18 @@
-import express, { Router, Request, Response } from 'express'
+import http from 'http'
+import path from 'path'
+import app from './app'
 
-const app = express()
-const port: number = 3001
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({ path: path.resolve(process.cwd(), '../../.env') })
+}
 
-const route = Router()
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
-route.get('/', async (request: Request, response: Response): Promise<Response> => {
-  return response.json({
-    message: 'Hello World!'
-  })
-})
-
-app.use(route)
+const port = process.env?.API_PORT ?? 5000
 
 try {
-  app.listen(port, (): void => {
-    console.info(`Express started on port: ${port}.`)
-  })
+  http.createServer(app)
+    .listen(port, () => {
+      console.error(`HTTP server started on port: ${port}`)
+    })
 } catch (error: any) {
   console.error(`Error occurred: ${error.message}`)
 }
