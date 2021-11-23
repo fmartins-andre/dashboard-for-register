@@ -1,12 +1,11 @@
 import http from 'http'
+import dotenv from 'dotenv'
 import path from 'path'
 import app from './app'
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config({ path: path.resolve(process.cwd(), '../../.env') })
-}
+dotenv.config({ path: path.resolve(process.cwd(), '../../.env') })
 
-const port = process.env?.API_PORT ?? 5000
+const port = process.env.API_PORT ?? 5000
 
 try {
   http.createServer(app)

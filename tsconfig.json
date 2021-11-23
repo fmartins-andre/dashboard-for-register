@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/client/*": ["packages/client/src/*"],
-      "@/api/*": ["packages/api/src/*"]
-    }
+    "sourceMap": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
   }
 }
