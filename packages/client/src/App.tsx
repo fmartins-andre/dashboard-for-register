@@ -1,43 +1,86 @@
-import { useState } from 'react'
-import logo from './logo.svg'
+import { Production } from './vite-env'
+import { useState, useEffect } from 'react'
 import './App.css'
+import getData from './services/getData'
+import dateFormat from './services/dateFormat'
 
 function App () {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState<Production|null>(null)
+  const [error, setError] = useState<string|null>(null)
+
+  const updateData = () => {
+    getData().then(result => {
+      console.info('::: API data received: ', result)
+      setData(result)
+      if (error) setError(null)
+    }).catch(error => {
+      console.log('::: Network error: ', error)
+      setError(error.message)
+    })
+  }
+
+  useEffect(() => {
+    updateData()
+  }, [])
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+      <main className="App-main">
+        <header>
+          <h2>Produção por Analista</h2>
+          <span><button className="reload" onClick={updateData}>&#8634;</button></span>
+        </header>
+
+        {!error && !data &&
+          <div className="loading">
+            <h3>Carregando...</h3>
+          </div>
+        }
+
+        {error &&
+          <div className="error">
+            <h3>Erro</h3>
+            <p>Ocorreu um erro ao tentar recuperar os dados do servidor</p>
+            <code>{error}</code>
+          </div>
+        }
+
+        {data && Object.keys(data).map((analyst) => {
+          return (
+            <details key={analyst}>
+              <summary>
+                <span>{analyst}</span>
+                <span>{data[analyst].length}</span>
+              </summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Protocolo</th>
+                    <th>Etapa</th>
+                    <th>Data / Hora</th>
+                    <th>Natureza</th>
+                    <th>Situação</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {data[analyst].map((key, index) => {
+                  return (
+                    <tr key={index} className={(index + 1) % 2 !== 0 ? 'odd' : ''}>
+                      <td>{key.protocolo}</td>
+                      <td>{key.etapa}</td>
+                      <td>{dateFormat(key.data as string)} {key.hora.substr(0, 5)}</td>
+                      <td>{key.natureza}</td>
+                      <td>{key.situacao}</td>
+                    </tr>
+                  )
+                })}
+                </tbody>
+              </table>
+            </details>
+          )
+        })}
+
+      </main>
     </div>
   )
 }

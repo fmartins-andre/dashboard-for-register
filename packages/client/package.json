@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "@pkg/client",
   "description": "A simple dashboard to follow Escriba Register data",
   "version": "1.0.0",
   "license": "MIT",

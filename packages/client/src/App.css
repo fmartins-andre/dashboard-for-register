@@ -1,42 +1,127 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.App-main {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 30px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  font-size: calc(10px + 2vmin);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  width: fit-content;
+}
+
+details {
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+summary {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+table {
+  border-top: 1px solid #c3c3c3;
+  cursor: auto;
+  margin: 1rem 0 10px 0;
+  padding-top: 1rem;
+  width: 100%;
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+table tr td {
+  border: 1px solid transparent;
+}
+
+table tr:hover td {
+  border-top: 1px solid #61dafb;
+  border-bottom: 1px solid #61dafb;
+  color: #61dafb;
+}
+
+.odd {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 button {
-  font-size: calc(10px + 2vmin);
+  background-color: transparent;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 2rem;
+  width: max-content;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  border-radius: 00.5rem;
+  cursor: pointer;
+}
+
+button:hover {
+  color: #61dafb;
+  border-color: #61dafb;
+  background-color: rgba(97, 218, 251, 0.07);
+}
+
+button:active {
+  background-color: rgba(97, 218, 251, 0.3);
+}
+
+div.error {
+  font-size: 1.5rem;
+  color: tomato;
+  border: 1px solid tomato;
+  max-width: 600px;
+  width: 100%;
+  margin: 50px auto;
+  padding: 30px;
+}
+
+div.error code {
+  border: 1px solid tomato;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 99, 71, 0.07);
+}
+
+div.error h3,
+div.loading h3 {
+  margin: 0;
+}
+
+div.loading {
+  max-width: 600px;
+  width: 100%;
+  font-size: 1.5rem;
+  color: #61dafb;
+  margin: 50px auto;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #61dafb;
 }
