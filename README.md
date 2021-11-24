@@ -22,8 +22,8 @@ Setup the environment variables needed by the apps:
 
 ```env
 API_PORT=5000
-API_CORS_ORIGINS=['http://localhost:3000']
-VITE_API_ADDRESS=http://192.168.1.235:5000
+API_CORS_ORIGINS=['http://your.ip:3000']
+VITE_API_ADDRESS=http://your.ip:5000
 MYSQL_HOST=127.0.0.1
 MYSQL_PORT=3306
 MYSQL_USER=mysql
@@ -35,6 +35,10 @@ MYSQL_DB=myDb
 - API_CORS_ORIGINS: Client address to be cors allowed
 - VITE_API_ADDRESS: Endpoint address the client will use to fetch data
 - MYSQL\*: All MySQL configurations
+
+**NOTES**:
+
+- The `VITE_API_ADDRESS` will be placed at build time, so, make sure the right values is set before build the docker image. I could'nt make vite recognize this variable through docker, so, the `.env` file is needed by `Dockerfile.app` file to make it work.
 
 ## Root folder scripts
 

@@ -1,0 +1,8 @@
+FROM node:16-alpine
+WORKDIR /api
+COPY ./packages/api/package.json ./
+COPY ./packages/api/tsconfig.json ./
+COPY ./yarn.lock ./
+COPY ./packages/api/src ./src
+RUN cd /api && yarn install --frozen-lockfile && yarn build
+CMD [ "yarn", "serve" ]

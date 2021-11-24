@@ -4,7 +4,9 @@ import routes from './routes'
 
 const app:Application = express()
 
-const allowedOrigins = process.env?.API_CORS_ORIGINS || 'http://localhost:3000'
+const allowedOrigins = process.env?.API_CORS_ORIGINS?.split(',') || ['http://localhost:3000']
+console.log('::: API: CORS Allowed Origins: ', allowedOrigins)
+
 const corsOptions: CorsOptions = {
   origin: allowedOrigins
 }

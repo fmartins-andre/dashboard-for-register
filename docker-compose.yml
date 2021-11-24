@@ -1,0 +1,47 @@
+version: '3.1'
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    container_name: app
+    restart: always
+    environment:
+      TZ: 'America/Sao_Paulo'
+      NODE_ENV: 'production'
+    env_file:
+      - .env
+    depends_on:
+      - api
+    expose:
+      - '3000'
+    ports:
+      - '3000:3000'
+    networks:
+      - main
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    command: yarn serve
+    container_name: api
+    restart: always
+    environment:
+      NODE_ENV: 'production'
+      TZ: 'America/Sao_Paulo'
+    env_file:
+      - .env
+    volumes:
+      - ./packages/api/dist:/usr/src/app
+    expose:
+      - '5000'
+    ports:
+      - '5000:5000'
+    networks:
+      - main
+
+networks:
+  main:

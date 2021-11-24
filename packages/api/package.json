@@ -3,7 +3,6 @@
   "description": "NodeJS API to get data from Escriba Register database",
   "version": "1.0.0",
   "main": "dist/server.js",
-  "type": "module",
   "typings": "dist/server.d.ts",
   "license": "MIT",
   "scripts": {

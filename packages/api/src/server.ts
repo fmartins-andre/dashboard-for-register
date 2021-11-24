@@ -10,8 +10,8 @@ const port = process.env.API_PORT ?? 5000
 try {
   http.createServer(app)
     .listen(port, () => {
-      console.error(`HTTP server started on port: ${port}`)
+      console.error(`::: API: HTTP server started on port: ${port}`)
     })
 } catch (error: any) {
-  console.error(`Error occurred: ${error.message}`)
+  console.error(`::: API: Error occurred: ${error.message}`)
 }
