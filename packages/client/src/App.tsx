@@ -1,10 +1,13 @@
 import { Production } from './vite-env'
 import { useState, useEffect } from 'react'
+import { usePageVisibility } from 'react-page-visibility'
 import './App.css'
 import getData from './services/getData'
 import dateFormat from './services/dateFormat'
 
 function App () {
+  const isVisible = usePageVisibility()
+  const [allOpen, setAllOpen] = useState<true|undefined>(undefined)
   const [data, setData] = useState<Production|null>(null)
   const [error, setError] = useState<string|null>(null)
 
@@ -19,16 +22,23 @@ function App () {
     })
   }
 
+  const toggleAllDetails = () => {
+    setAllOpen(allOpen ? undefined : true)
+  }
+
   useEffect(() => {
-    updateData()
-  }, [])
+    if (isVisible) updateData()
+  }, [isVisible])
 
   return (
     <div className="App">
       <main className="App-main">
         <header>
           <h2>Produção por Analista</h2>
-          <span><button className="reload" onClick={updateData}>&#8634;</button></span>
+          <nav className="button-group">
+            <button onClick={toggleAllDetails}>&#8645;</button>
+            <button onClick={updateData}>&#8634;</button>
+          </nav>
         </header>
 
         {!error && !data &&
@@ -47,7 +57,7 @@ function App () {
 
         {data && !error && Object.keys(data).map((analyst) => {
           return (
-            <details key={analyst}>
+            <details key={analyst} open={allOpen}>
               <summary>
                 <span>{analyst}</span>
                 <span>{data[analyst].length}</span>
