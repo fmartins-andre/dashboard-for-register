@@ -45,7 +45,7 @@ function App () {
           </div>
         }
 
-        {data && Object.keys(data).map((analyst) => {
+        {data && !error && Object.keys(data).map((analyst) => {
           return (
             <details key={analyst}>
               <summary>
