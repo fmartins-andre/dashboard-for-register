@@ -38,10 +38,12 @@ MYSQL_DB=myDb
 
 **NOTES**:
 
-- The `VITE_API_ADDRESS` will be placed at build time, so, make sure the right values is set before build the docker image. I could'nt make vite recognize this variable through docker, so, the `.env` file is needed by `Dockerfile.app` file to make it work.
+- The `VITE_API_ADDRESS` will be placed at build time, so, make sure the right values are set before build the docker image.
+
+  I could'nt make vite recognize this variable through docker, so, the `.env` file is needed by `Dockerfile.app` file to make it work.
 
 ## Root folder scripts
 
 There are two packages in this repo: `api` and `client`. In the root folder `package.json` there are scripts to reach each package.
 
-To work on `api` just type `yarn api [command]`. The same to `client`
+To work on `api` just type `yarn api [command]`. The same to `client`.
