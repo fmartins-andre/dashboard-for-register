@@ -1,21 +1,21 @@
 import getDatabaseConnection from '../infra/getDatabaseConnection'
 
-const getDatabaseData = async () => {
+const getProductionData = async () => {
   const connection = await getDatabaseConnection()
 
   if (!connection) throw Error('[ ERROR ] MYSQL: Could not make connection with database.')
 
   const [productionRows] = await connection.execute(`
     SELECT
-    l1.L1_Protocolo AS "protocolo", 
-    IF(l1.L1_Ativo = 1, 'ativo',
-      IF(l1.l1_duvida =1, 'Dúvida', 'Encerrado')
-    ) AS "situacao",
-    l1.L1_Natureza AS "natureza",
-    et.Et_Descricao AS "etapa",
-    us.Us_Login AS "escrevente",
-    l1et.ie1_dataentrada AS "data",
-    l1et.ie1_horaentrada AS "hora"
+    l1.L1_Protocolo AS "protocol", 
+    IF(l1.L1_Ativo = 1, 'Ativo',
+      IF(l1.l1_duvida = 1, 'Dúvida', 'Encerrado')
+    ) AS "status",
+    l1.L1_Natureza AS "nature",
+    et.Et_Descricao AS "stage",
+    us.Us_Login AS "analyst",
+    l1et.ie1_dataentrada AS "date",
+    l1et.ie1_horaentrada AS "hour"
   FROM sqlreg3.l1
   INNER JOIN sqlreg3.etapa AS et ON(l1.l1_etapa = et.Et_id)
   LEFT JOIN sqlreg3.usuario AS us ON(l1.L1_Dist = us.Us_Id)
@@ -29,4 +29,17 @@ const getDatabaseData = async () => {
   return productionRows
 }
 
-export default getDatabaseData
+export type ProtocolData = {
+  protocol: string
+  status: string
+  nature: string
+  stage: string
+  analyst?: string | null
+  date: Date | string
+  hour: string
+}
+
+export type Production = {
+  [key: string]: ProtocolData[]
+}
+export default getProductionData

@@ -1,14 +1,23 @@
 import { Router } from 'express'
-import getDatabaseData from './data/getDatabaseData'
-import transformData, { Data } from './services/transformData'
+import getProductionData, { ProtocolData } from './data/getAnalystProductionData'
+import getStagesData, { StageData } from './data/getStagesData'
+import normalizeAnalystProductionData from './services/normalizeAnalystProductionData'
+import normalizeStageData from './services/normalizeStageData'
 
 const routes = Router()
 
 routes.get('/api/v1/analysts/production', async (request, response) => {
-  const data = await getDatabaseData()
-  const transformed = transformData(data as Data[])
+  const data = await getProductionData()
+  const normalized = normalizeAnalystProductionData(data as ProtocolData[])
 
-  response.json(transformed)
+  response.json(normalized)
+})
+
+routes.get('/api/v1/stages/production', async (request, response) => {
+  const data = await getStagesData()
+  const normalized = normalizeStageData(data as StageData[])
+
+  response.json(normalized)
 })
 
 export default routes

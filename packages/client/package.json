@@ -11,7 +11,8 @@
   "dependencies": {
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-page-visibility": "^6.4.0"
+    "react-page-visibility": "^6.4.0",
+    "react-router-dom": "^6.0.2"
   },
   "devDependencies": {
     "@types/node": "^16.11.10",
