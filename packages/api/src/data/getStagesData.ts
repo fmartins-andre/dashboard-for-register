@@ -20,7 +20,7 @@ const getStageData = async () => {
   LEFT JOIN sqlreg3.l1_indicadoretapas AS l1et ON(l1.L1_Protocolo = l1et.ie1_protocolo AND et.Et_id = l1et.ie1_etapa AND l1et.ie1_dataentrada >= l1.L1_DataEtapa)
   LEFT JOIN sqlreg3.l1_l2 ON(l1.L1_Protocolo = l1_l2.protL1)
   LEFT JOIN sqlreg3.l2 ON(l1_l2.idL2 = l2.L2_Id)
-  WHERE l1.L1_Ativo = 1 AND l1.l1_outro = 0 AND l1.l1_duvida = 0
+  WHERE l1.L1_Ativo = 1 AND l1.l1_outro = 0 AND l1.l1_duvida = 0 AND et.Et_id NOT IN (15, 22)
   GROUP BY l1.L1_Protocolo
   ORDER BY et.et_ordem, l1.L1_Protocolo, l1.L1_Natureza
   `)
