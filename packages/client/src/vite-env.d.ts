@@ -2,6 +2,8 @@
 
 export type ProtocolData = {
   protocol: string
+  registry: string
+  registryPlusCount: number
   status: string
   nature: string
   stage: string
@@ -16,6 +18,8 @@ export type Production = {
 
 export type StageData = {
   protocol: number
+  registry: string
+  registryPlusCount: number
   nature: string
   stage?: string
   stageOrder?: number
