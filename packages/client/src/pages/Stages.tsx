@@ -65,6 +65,7 @@ function App () {
                 <thead>
                   <tr>
                     <th>Protocolo</th>
+                    <th>Matrículas</th>
                     <th>Natureza</th>
                     <th>Data / Hora</th>
                   </tr>
@@ -74,6 +75,14 @@ function App () {
                   return (
                     <tr key={index} className={(index + 1) % 2 !== 0 ? 'odd' : ''}>
                       <td>{key.protocol}</td>
+                      <td>
+                        {key.registry}
+                        {key.registryPlusCount > 1 &&
+                          <span style={{ filter: 'brightness(0.5)', fontSize: '0.85em' }}>
+                            {` (+${key.registryPlusCount - 1})`}
+                          </span>
+                        }
+                      </td>
                       <td>{key.nature}</td>
                       <td>{dateFormat(key.date as string)} {key.hour.substr(0, 5)}</td>
                     </tr>
