@@ -1,5 +1,4 @@
-
-import type { Stage, StageData } from '../data/getStagesData'
+import { Stage, StageData } from '../types/types'
 
 const normalizeStageData = (data: StageData[]) => {
   const stage: Stage = {}

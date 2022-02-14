@@ -34,17 +34,4 @@ const getProductionData = async () => {
   return productionRows
 }
 
-export type ProtocolData = {
-  protocol: string
-  status: string
-  nature: string
-  stage: string
-  analyst?: string | null
-  date: Date | string
-  hour: string
-}
-
-export type Production = {
-  [key: string]: ProtocolData[]
-}
 export default getProductionData
