@@ -24,6 +24,8 @@ Setup the environment variables needed by the apps:
 API_PORT=5000
 API_CORS_ORIGINS=['http://your.ip:3000']
 VITE_API_ADDRESS=http://your.ip:5000
+VITE_ANALYST_PROD_SORTING=alpha-asc
+VITE_ANALYST_PROD_FILTER=tag clerk supervisor
 MYSQL_HOST=127.0.0.1
 MYSQL_PORT=3306
 MYSQL_USER=mysql
@@ -34,6 +36,15 @@ MYSQL_DB=myDb
 - API_PORT: HTTP port used by the API server
 - API_CORS_ORIGINS: Client address to be cors allowed
 - VITE_API_ADDRESS: Endpoint address the client will use to fetch data
+- VITE_ANALYST_PROD_SORTING: Default sorting type for analysts page. It must be one of the following values (see client enums file):
+  - alpha-asc
+  - alpha-des
+  - total-asc
+  - total-des
+- VITE_ANALYST_PROD_FILTER: Default filters for analysts page, separated by space. It must be any combination of the following values (see client enums file):
+  - clerk
+  - supervisor
+  - tag
 - MYSQL\*: All MySQL configurations
 
 **NOTES**:
@@ -41,6 +52,10 @@ MYSQL_DB=myDb
 - The `VITE_API_ADDRESS` will be placed at build time, so, make sure the right values are set before build the docker image.
 
   I could'nt make vite recognize this variable through docker, so, the `.env` file is needed by `Dockerfile.app` file to make it work.
+
+- Put the string `#dashboard` in the `observação` field in the user registration screen, on "Escriba Register", to be able to use the tag `tag` in `VITE_ANALYST_PROD_FILTER` environment variable, as it'll search by users with this tag.
+
+ - `clerk` and `supervisor`, as options of `VITE_ANALYST_PROD_FILTER` environment variable, will search by users with `escrevente` and `supervisor` checkboxes marked on user registration screen, on "Escriba Register".
 
 ## Root folder scripts
 
