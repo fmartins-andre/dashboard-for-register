@@ -1,0 +1,16 @@
+:root {
+  --scroll-bar-color: #fff;
+  --scroll-bar-bg-color: #282c34;
+  --text-primary: #fff;
+  --text-primary-dark: #c3c3c3;
+  --color-primary: #282c34;
+  --color-secondary: #61dafb;
+}
+
+div.paper {
+  border: 1px solid var(--color-secondary);
+  background-color: var(--color-primary);
+  width: max-content;
+  min-width: 100px;
+  border-radius: 00.5rem;
+}
