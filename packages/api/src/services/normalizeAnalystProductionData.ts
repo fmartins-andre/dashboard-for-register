@@ -1,19 +1,25 @@
+import { Analyst, Production, ProtocolData } from '../types/types'
 
-import type { Production, ProtocolData } from '../data/getAnalystProductionData'
-
-const normalizeAnalystProductionData = (data: ProtocolData[]) => {
+const normalizeAnalystProductionData = (data: ProtocolData[], analysts: Analyst[]) => {
   const production: Production = {}
+
+  if (analysts?.length) {
+    analysts.forEach(row => {
+      production[row.username.toLocaleLowerCase()] = {
+        hasTag: row.hasTag,
+        isClerk: row.isClerk,
+        isSupervisor: row.isSupervisor,
+        protocols: []
+      }
+    })
+  }
 
   data.forEach(row => {
     if (row.analyst == null) return null
 
-    if (!(row.analyst in production)) {
-      production[row.analyst] = []
-    }
-
     const data = { ...row }
     delete data.analyst
-    production[row.analyst].push(data)
+    production[row.analyst.toLocaleLowerCase()].protocols.push(data)
   })
 
   return production
