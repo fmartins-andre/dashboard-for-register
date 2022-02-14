@@ -1,4 +1,4 @@
-import { Stage } from '../vite-env'
+import { Stage } from '../types/types'
 import { useState, useEffect } from 'react'
 import { usePageVisibility } from 'react-page-visibility'
 import getData from '../services/getData'

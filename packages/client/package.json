@@ -9,9 +9,12 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.2",
     "react": "^17.0.0",
+    "react-click-away-listener": "^2.1.0",
     "react-dom": "^17.0.0",
     "react-page-visibility": "^6.4.0",
+    "react-popper": "^2.2.5",
     "react-router-dom": "^6.0.2"
   },
   "devDependencies": {

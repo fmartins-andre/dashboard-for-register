@@ -1,10 +1,14 @@
 :root {
   --scroll-bar-color: #fff;
   --scroll-bar-bg-color: #282c34;
+  --text-primary: #fff;
+  --text-primary-dark: #c3c3c3;
+  --color-primary: #282c34;
+  --color-secondary: #61dafb;
 }
 
 html {
-  background-color: #282c34;
+  background-color: var(--color-primary);
   color: white;
   font-size: 12px;
 }
@@ -64,10 +68,11 @@ main {
 }
 
 .link {
-  color: #61dafb;
+  color: var(--color-secondary);
 }
 
-button {
+button,
+select {
   font-size: calc(10px + 2vmin);
 }
 
@@ -81,7 +86,7 @@ h6 {
 }
 
 details {
-  border: 1px solid #fff;
+  border: 1px solid var(--text-primary);
   border-radius: 0.5rem;
   padding: 0.8rem;
   margin-bottom: 0.5rem;
@@ -95,7 +100,7 @@ summary {
 }
 
 table {
-  border-top: 1px solid #c3c3c3;
+  border-top: 1px solid var(--text-primary-dark);
   cursor: auto;
   margin: 1rem 0 10px 0;
   padding-top: 1rem;
@@ -109,9 +114,9 @@ table tr td {
 }
 
 table tr:hover td {
-  border-top: 1px solid #61dafb;
-  border-bottom: 1px solid #61dafb;
-  color: #61dafb;
+  border-top: 1px solid var(--color-secondary);
+  border-bottom: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
 }
 
 .odd {
@@ -124,27 +129,37 @@ header {
   align-items: center;
 }
 
-button {
+button,
+select {
   background-color: transparent;
-  color: #fff;
+  color: var(--text-primary);
   font-weight: bolder;
   font-size: 2rem;
   width: max-content;
   padding: 10px 20px;
   margin: 0.25rem;
-  border: 1px solid #fff;
+  border: 1px solid var(--text-primary);
   border-radius: 00.5rem;
   cursor: pointer;
 }
 
-button:hover {
-  color: #61dafb;
-  border-color: #61dafb;
+button:hover,
+select:hover {
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
   background-color: rgba(97, 218, 251, 0.07);
 }
 
 button:active {
   background-color: rgba(97, 218, 251, 0.3);
+}
+
+select {
+  padding: 10px 2px 10px 10px;
+}
+
+option {
+  background-color: var(--color-primary);
 }
 
 div.error {
@@ -172,13 +187,13 @@ div.loading {
   max-width: 600px;
   width: 100%;
   font-size: 1.5rem;
-  color: #61dafb;
+  color: var(--color-secondary);
   margin: 50px auto;
   padding: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #61dafb;
+  border: 1px solid var(--color-secondary);
 }
 
 nav.menu {
@@ -189,11 +204,11 @@ nav.menu {
   max-width: 1280px;
   margin: 0 30px;
   padding-bottom: 10px;
-  border-bottom: 1px dotted #fff;
+  border-bottom: 1px dotted var(--text-primary);
 }
 
 nav.menu a {
-  color: #fff;
+  color: var(--text-primary);
   text-decoration: none;
   text-transform: lowercase;
   font-weight: bold;
@@ -201,5 +216,5 @@ nav.menu a {
 }
 
 nav.menu a:hover {
-  color: #61dafb;
+  color: var(--color-secondary);
 }
