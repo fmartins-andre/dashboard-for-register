@@ -15,11 +15,18 @@ const normalizeAnalystProductionData = (data: ProtocolData[], analysts: Analyst[
   }
 
   data.forEach(row => {
-    if (row.analyst == null) return null
+    try {
+      if (
+        row.analyst == null ||
+        !Object.prototype.hasOwnProperty.call(production, row.analyst.toLocaleLowerCase())
+      ) { return null }
 
-    const data = { ...row }
-    delete data.analyst
-    production[row.analyst.toLocaleLowerCase()].protocols.push(data)
+      const data = { ...row }
+      delete data.analyst
+      production[row.analyst.toLocaleLowerCase()]?.protocols.push(data)
+    } catch (error) {
+      console.error(error)
+    }
   })
 
   return production
